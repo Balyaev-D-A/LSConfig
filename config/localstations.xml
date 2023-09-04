@@ -1,5 +1,5 @@
 <Localstations>
-    <Localstation name='ЛС04' KKS='2XQ13R001D'>
+    <Localstation name='ЛС04' kks='2XQ13R001D' addr='1'>
         <Channel num='1'>
             <KKS>2XQ13R01RB</KKS>
             <Type>БДРГ-17С2</Type>
