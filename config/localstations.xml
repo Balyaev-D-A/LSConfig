@@ -1,0 +1,64 @@
+<Localstations>
+    <Localstation name='ЛС04' KKS='2XQ13R001D'>
+        <Channel num='1'>
+            <KKS>2XQ13R01RB</KKS>
+            <Type>БДРГ-17С2</Type>
+        </Channel>
+        <Channel num='2'>
+            <KKS>2XQ13R02RB</KKS>
+            <Type>БДРГ-17С1</Type>
+        </Channel>
+        <Channel num='4'>
+            <KKS>2XQ13R04RB</KKS>
+            <Type>БДРГ-17С2</Type>
+        </Channel>
+        <Channel num='5'>
+            <KKS>2XQ13R05RB</KKS>
+            <Type>БДРГ-17С1</Type>
+        </Channel>
+        <Channel num='6'>
+            <KKS>2XQ13R06RB</KKS>
+            <Type>БДРГ-17С2</Type>
+        </Channel>
+        <Channel num='7'>
+            <KKS>2XQ13R07RB</KKS>
+            <Type>БДРГ-17С2</Type>
+        </Channel>
+        <Channel num='8'>
+            <KKS>2XQ13R08RB</KKS>
+            <Type>БДРГ-17С1</Type>
+        </Channel>
+        <Channel num='9'>
+            <KKS>2XQ13R09RB</KKS>
+            <Type>БДРГ-17С2</Type>
+        </Channel>
+        <Channel num='10'>
+            <KKS>2XQ13R10RB</KKS>
+            <Type>БДРГ-17С1</Type>
+        </Channel>
+        <Channel num='11'>
+            <KKS>2XQ13R11RB</KKS>
+            <Type>БДРГ-17С1</Type>
+        </Channel>
+        <Channel num='12'>
+            <KKS>2XQ13R12RB</KKS>
+            <Type>БДРГ-17С2</Type>
+        </Channel>
+        <Channel num='13'>
+            <KKS>2XQ13R13RB</KKS>
+            <Type>БДРГ-17С1</Type>
+        </Channel>
+        <Channel num='14'>
+            <KKS>2XQ13R14RB</KKS>
+            <Type>БДРГ-17С2</Type>
+        </Channel>
+        <Channel num='15'>
+            <KKS>2XQ13R15RB</KKS>
+            <Type>БДРГ-17С4К ч.</Type>
+        </Channel>
+        <Channel num='16'>
+            <KKS>2XQ13R15RB</KKS>
+            <Type>БДРГ-17С4К г.</Type>
+        </Channel>
+    </Localstation>
+</Config>
