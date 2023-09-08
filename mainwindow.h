@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include <QXmlStreamReader>
+#include "stationmanager.h"
+#include "stationselectform.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -17,20 +19,13 @@ public:
     ~MainWindow();
 
 private:
-    struct CHANNEL {
-        int num;
-        bool enabled = false;
-        QString deviceType;
-        QString KKS;
-    };
-    struct LOCALSTATION {
-        QString name;
-        QString UNOKKS;
-        quint8 address;
-        CHANNEL channels[16];
-    };
-    QList<LOCALSTATION> m_localStations;
     Ui::MainWindow *ui;
-    QXmlStreamReader m_xmlreader;
+    StationManager::Station currStation;
+    StationSelectForm *stationSelForm;
+
+private slots:
+    void stationSelFormClosed();
+    void connectActionTriggered();
+    void stationChoosed(int index);
 };
 #endif // MAINWINDOW_H

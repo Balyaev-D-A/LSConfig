@@ -13,16 +13,21 @@ SOURCES += \
     mainwindow.cpp \
     device.cpp \
     settings.cpp \
+    stationmanager.cpp \
+    stationselectform.cpp \
     util.cpp
 
 HEADERS += \
     mainwindow.h \
     device.h \
     settings.h \
+    stationmanager.h \
+    stationselectform.h \
     util.h
 
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
+    stationselectform.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
