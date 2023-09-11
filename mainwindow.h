@@ -22,6 +22,8 @@ private:
     Ui::MainWindow *ui;
     StationManager::Station currStation;
     StationSelectForm *stationSelForm;
+    void fillUOMBox();
+    void connectLoop();
 
 private slots:
     void stationSelFormClosed();

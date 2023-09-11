@@ -7,6 +7,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     connect(ui->connectAction, &QAction::triggered, this, &MainWindow::connectActionTriggered);
+    fillUOMBox();
 }
 
 MainWindow::~MainWindow()
@@ -17,7 +18,7 @@ MainWindow::~MainWindow()
 void MainWindow::connectActionTriggered()
 {
     StationSelectForm *stSelForm = new StationSelectForm(this);
-    stSelForm->setWindowModality(Qt::WindowModal);
+    stSelForm->setWindowModality(Qt::ApplicationModal);
     connect(stSelForm, &StationSelectForm::closed, this, &MainWindow::stationSelFormClosed);
     connect(stSelForm, &StationSelectForm::choosed, this, &MainWindow::stationChoosed);
     stSelForm->show();
@@ -40,4 +41,35 @@ void MainWindow::stationChoosed(int index)
         ui->channelsTable->setItem(i, 0, new QTableWidgetItem(currStation.channels[i].kks));
         ui->channelsTable->setItem(i, 1, new QTableWidgetItem(currStation.channels[i].detType));
     }
+}
+
+void MainWindow::fillUOMBox()
+{
+    ui->uomBox->addItem("Гр/ч", 1);
+    ui->uomBox->addItem("Бэр/ч", 2);
+    ui->uomBox->addItem("Зв/ч", 3);
+    ui->uomBox->addItem("Р/ч", 4);
+    ui->uomBox->addItem("Н/(м²*с)", 5);
+    ui->uomBox->addItem("Бк/м³", 8);
+    ui->uomBox->addItem("Ки/л", 9);
+    ui->uomBox->addItem("1/(мин*см²)", 10);
+    ui->uomBox->addItem("Гр", 16);
+    ui->uomBox->addItem("Рад", 17);
+    ui->uomBox->addItem("Зв", 18);
+    ui->uomBox->addItem("мг/м³", 32);
+    ui->uomBox->addItem("%", 48);
+    ui->uomBox->addItem("имп/с", 49);
+    ui->uomBox->addItem("°С", 50);
+    ui->uomBox->addItem("Вт", 51);
+    ui->uomBox->addItem("В", 52);
+    ui->uomBox->addItem("сек", 53);
+    ui->uomBox->addItem("м³", 54);
+    ui->uomBox->addItem("м³/ч", 55);
+    ui->uomBox->addItem("м³/с", 56);
+    ui->uomBox->addItem("л/мин", 57);
+}
+
+void connectLoop()
+{
+
 }

@@ -14,7 +14,6 @@ StationManager* StationManager::instance()
 StationManager::StationManager()
 {
     QFile file(QApplication::applicationDirPath() + "/localstations.xml");
-    QXmlStreamReader::TokenType token;
     Station station;
     QXmlStreamAttributes attrs;
 
@@ -22,9 +21,9 @@ StationManager::StationManager()
         QXmlStreamReader xml(&file);
         while (!xml.atEnd() && !xml.hasError())
         {
-            token = xml.readNext();
-            if (token == QXmlStreamReader::StartDocument) continue;
-            if (token == QXmlStreamReader::StartElement) {
+            xml.readNext();
+            if (xml.isStartDocument()) continue;
+            if (xml.isStartElement()) {
                 if (xml.name() != "Localstation") continue;
                 attrs = xml.attributes();
                 if (!attrs.hasAttribute("addr")) continue;
@@ -34,9 +33,9 @@ StationManager::StationManager()
                 if (attrs.hasAttribute("kks")) station.kks = attrs.value("kks").toString();
                 else station.kks = "Нет KKS";
                 for (int i=0; i<15; i++) station.channels[i].active = false;
-                while (!((token==QXmlStreamReader::EndElement) && (xml.name() == "Localstation")))
+                while (!((xml.isEndElement()) && (xml.name() == "Localstation")))
                 {
-                    token = xml.readNext();
+                    xml.readNext();
                     if (xml.isStartElement()) {
                         if (xml.name() != "Channel") continue;
                         attrs = xml.attributes();
