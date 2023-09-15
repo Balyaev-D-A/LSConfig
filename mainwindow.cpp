@@ -45,6 +45,7 @@ void MainWindow::stationChoosed(int index)
 
 void MainWindow::fillUOMBox()
 {
+    ui->uomBox->addItem("---", 255);
     ui->uomBox->addItem("Гр/ч", 1);
     ui->uomBox->addItem("Бэр/ч", 2);
     ui->uomBox->addItem("Зв/ч", 3);
@@ -69,7 +70,10 @@ void MainWindow::fillUOMBox()
     ui->uomBox->addItem("л/мин", 57);
 }
 
-void connectLoop()
+void MainWindow::connectLoop()
 {
+    while (connected)
+    {
 
+    }
 }

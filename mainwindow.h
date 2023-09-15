@@ -22,6 +22,7 @@ private:
     Ui::MainWindow *ui;
     StationManager::Station currStation;
     StationSelectForm *stationSelForm;
+    bool connected;
     void fillUOMBox();
     void connectLoop();
 
