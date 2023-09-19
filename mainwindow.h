@@ -4,7 +4,7 @@
 #include <QMainWindow>
 #include <QXmlStreamReader>
 #include "stationmanager.h"
-#include "stationselectform.h"
+#include "connectform.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -21,7 +21,7 @@ public:
 private:
     Ui::MainWindow *ui;
     StationManager::Station currStation;
-    StationSelectForm *stationSelForm;
+    ConnectForm *stationSelForm;
     bool connected;
     void fillUOMBox();
     void connectLoop();

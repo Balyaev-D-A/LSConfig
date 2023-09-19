@@ -22,10 +22,14 @@ public:
     typedef QList<Station> StationList;
 
     static StationManager* instance();
-    StationList getStations();
+    StationList allStations();
+    bool setCurrentStationByKKS(QString KKS);
+    bool setCurrentStationByName(QString Name);
+    Station currentStation();
 
 private:
-    StationList stationList;
+    int m_currStationIndex;
+    StationList m_stationList;
     StationManager();
     ~StationManager();
     static StationManager *m_instance;

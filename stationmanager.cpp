@@ -55,14 +55,14 @@ StationManager::StationManager()
                         }
                     }
                 }
-                stationList.append(station);
+                m_stationList.append(station);
             }
         }
     }
 
 }
 
-StationManager::StationList StationManager::getStations()
+StationManager::StationList StationManager::allStations()
 {
-    return stationList;
+    return m_stationList;
 }

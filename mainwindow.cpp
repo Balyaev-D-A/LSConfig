@@ -17,10 +17,9 @@ MainWindow::~MainWindow()
 
 void MainWindow::connectActionTriggered()
 {
-    StationSelectForm *stSelForm = new StationSelectForm(this);
-    stSelForm->setWindowModality(Qt::ApplicationModal);
-    connect(stSelForm, &StationSelectForm::closed, this, &MainWindow::stationSelFormClosed);
-    connect(stSelForm, &StationSelectForm::choosed, this, &MainWindow::stationChoosed);
+    ConnectForm *stSelForm = new ConnectForm(this);
+    connect(stSelForm, &ConnectForm::closed, this, &MainWindow::stationSelFormClosed);
+    connect(stSelForm, &ConnectForm::choosed, this, &MainWindow::stationChoosed);
     stSelForm->show();
 }
 
@@ -32,7 +31,7 @@ void MainWindow::stationSelFormClosed()
 void MainWindow::stationChoosed(int index)
 {
     if (index < 0) return;
-    currStation = StationManager::instance()->getStations()[index];
+    currStation = StationManager::instance()->allStations()[index];
     while (ui->channelsTable->rowCount()) ui->channelsTable->removeRow(0);
     for (int i=0; i<16; i++)
     {
