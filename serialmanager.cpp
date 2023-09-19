@@ -1,3 +1,4 @@
+#include <QSerialPortInfo>
 #include "serialmanager.h"
 
 SerialManager *SerialManager::m_inst = nullptr;
@@ -15,22 +16,36 @@ SerialManager::SerialManager()
 
 SerialManager::~SerialManager()
 {
-    delete m_currPort;
+
 }
 
-bool SerialManager::setCurrentPort(QString port)
+void SerialManager::setCurrentPort(QString port)
 {
-    delete m_currPort;
-    m_currPort = new QSerialPortInfo(port);
-    return !m_currPort->isNull();
+    m_currPort = port;
 }
 
 QString SerialManager::currentPort()
 {
-    return m_currPort->portName();
+    return m_currPort;
 }
 
-SerialManager::PortList SerialManager::allPorts()
+QStringList SerialManager::allPorts()
 {
-    return QSerialPortInfo::availablePorts();
+    QStringList result;
+    QList<QSerialPortInfo> portList = QSerialPortInfo::availablePorts();
+    for (int i=0; i<portList.size(); i++)
+        result.append(portList[i].portName());
+    return result;
+}
+
+bool SerialManager::portBusy(QString portName)
+{
+    QSerialPortInfo port(portName);
+    return port.isBusy();
+}
+
+QString SerialManager::portManufacturer(QString portName)
+{
+    QSerialPortInfo port(portName);
+    return port.description();
 }

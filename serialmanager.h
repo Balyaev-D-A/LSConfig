@@ -1,19 +1,20 @@
 #ifndef SERIALMANAGER_H
 #define SERIALMANAGER_H
 #include <QString>
-#include <QSerialPortInfo>
 
 class SerialManager
 {
 public:
-    typedef QList<QSerialPortInfo> PortList;
     static SerialManager* instance();
-    bool setCurrentPort(QString port);
+    void setCurrentPort(QString port);
     QString currentPort();
-    PortList allPorts();
+    QStringList allPorts();
+    QString portManufacturer(QString portName);
+    bool portBusy(QString portName);
+    QString portSerial(QString portName);
 private:
     static SerialManager* m_inst;
-    QSerialPortInfo *m_currPort = new QSerialPortInfo();
+    QString m_currPort;
     SerialManager();
     ~SerialManager();
 };

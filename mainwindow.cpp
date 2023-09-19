@@ -17,10 +17,10 @@ MainWindow::~MainWindow()
 
 void MainWindow::connectActionTriggered()
 {
-    ConnectForm *stSelForm = new ConnectForm(this);
-    connect(stSelForm, &ConnectForm::closed, this, &MainWindow::stationSelFormClosed);
-    connect(stSelForm, &ConnectForm::choosed, this, &MainWindow::stationChoosed);
-    stSelForm->show();
+    ConnectForm *connectForm = new ConnectForm(this);
+    connect(connectForm, &ConnectForm::closed, this, &MainWindow::stationSelFormClosed);
+    connect(connectForm, &ConnectForm::choosed, this, &MainWindow::stationChoosed);
+    connectForm->show();
 }
 
 void MainWindow::stationSelFormClosed()

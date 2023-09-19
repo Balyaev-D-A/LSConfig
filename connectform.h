@@ -2,8 +2,6 @@
 #define CONNECTFORM_H
 
 #include <QWidget>
-#include "stationmanager.h"
-#include "serialmanager.h"
 
 namespace Ui {
 class ConnectForm;
