@@ -11,7 +11,7 @@ public:
     QStringList allPorts();
     QString portManufacturer(QString portName);
     bool portBusy(QString portName);
-    QString portSerial(QString portName);
+    QString portDescription(QString portName);
 private:
     static SerialManager* m_inst;
     QString m_currPort;

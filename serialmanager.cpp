@@ -47,5 +47,11 @@ bool SerialManager::portBusy(QString portName)
 QString SerialManager::portManufacturer(QString portName)
 {
     QSerialPortInfo port(portName);
+    return port.manufacturer();
+}
+
+QString SerialManager::portDescription(QString portName)
+{
+    QSerialPortInfo port(portName);
     return port.description();
 }
