@@ -29,6 +29,6 @@ private:
 private slots:
     void stationSelFormClosed();
     void connectActionTriggered();
-    void stationChoosed(int index);
+    void connectionChoosed();
 };
 #endif // MAINWINDOW_H

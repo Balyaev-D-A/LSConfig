@@ -23,9 +23,8 @@ public:
 
     static StationManager* instance();
     StationList allStations();
-    bool setCurrentStationByKKS(QString KKS);
-    bool setCurrentStationByName(QString Name);
-    Station currentStation();
+    void setCurrentStation(int index) {m_currStationIndex = index;}
+    StationManager::Station currentStation();
 
 private:
     int m_currStationIndex;

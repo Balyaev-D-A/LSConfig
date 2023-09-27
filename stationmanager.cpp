@@ -66,3 +66,8 @@ StationManager::StationList StationManager::allStations()
 {
     return m_stationList;
 }
+
+StationManager::Station StationManager::currentStation()
+{
+    return m_stationList[m_currStationIndex];
+}

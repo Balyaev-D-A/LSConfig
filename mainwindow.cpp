@@ -19,7 +19,7 @@ void MainWindow::connectActionTriggered()
 {
     ConnectForm *connectForm = new ConnectForm(this);
     connect(connectForm, &ConnectForm::closed, this, &MainWindow::stationSelFormClosed);
-    connect(connectForm, &ConnectForm::choosed, this, &MainWindow::stationChoosed);
+    connect(connectForm, &ConnectForm::choosed, this, &MainWindow::connectionChoosed);
     connectForm->show();
 }
 
@@ -28,10 +28,9 @@ void MainWindow::stationSelFormClosed()
     sender()->deleteLater();
 }
 
-void MainWindow::stationChoosed(int index)
+void MainWindow::connectionChoosed()
 {
-    if (index < 0) return;
-    currStation = StationManager::instance()->allStations()[index];
+    currStation = StationManager::instance()->currentStation();
     while (ui->channelsTable->rowCount()) ui->channelsTable->removeRow(0);
     for (int i=0; i<16; i++)
     {
