@@ -3,8 +3,10 @@
 
 #include <QMainWindow>
 #include <QXmlStreamReader>
+#include <QQueue>
 #include "stationmanager.h"
 #include "connectform.h"
+#include "device.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -22,9 +24,22 @@ private:
     Ui::MainWindow *ui;
     StationManager::Station currStation;
     ConnectForm *stationSelForm;
+    Device device;
     bool connected;
+    enum EAction {
+        UPDATEINDICATIONS,
+        UPDATECHANCONF,
+        WRITECHANCONF,
+        SAVETOCMOS
+    };
+    QQueue<EAction> actionQueue;
+    Device::TChannelConfig currChanConf;
+    Device::TDeviceInfo currDevInfo;
     void fillUOMBox();
-    void connectLoop();
+    void connectToDevice();
+    void disconnectFromDevice();
+    void dataLoop();
+    void displayInfo();
 
 private slots:
     void stationSelFormClosed();

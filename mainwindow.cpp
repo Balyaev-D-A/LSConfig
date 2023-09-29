@@ -1,5 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "serialmanager.h"
+#include <QMessageBox>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -39,6 +41,8 @@ void MainWindow::connectionChoosed()
         ui->channelsTable->setItem(i, 0, new QTableWidgetItem(currStation.channels[i].kks));
         ui->channelsTable->setItem(i, 1, new QTableWidgetItem(currStation.channels[i].detType));
     }
+    ui->channelsTable->selectRow(0);
+    ui->channelsTable->
 }
 
 void MainWindow::fillUOMBox()
@@ -68,10 +72,31 @@ void MainWindow::fillUOMBox()
     ui->uomBox->addItem("л/мин", 57);
 }
 
-void MainWindow::connectLoop()
+void MainWindow::connectToDevice()
 {
+    if (!device.connectToDevice(SerialManager::instance()->currentPort(), StationManager::instance()->currentStation().address)) {
+        QMessageBox::critical(this, "Ошибка подключения!!!", device.errorString());
+        return;
+    }
+    connected = true;
+    actionQueue.enqueue(UPDATECHANCONF);
+    dataLoop();
+}
+
+void MainWindow::dataLoop()
+{
+    EAction action;
     while (connected)
     {
+        device.getCurrentInfo(&currDevInfo);
+        displayInfo();
+        if (!actionQueue.isEmpty()) {
+            action = actionQueue.dequeue();
+            switch (action) {
+            case UPDATECHANCONF:
 
+
+            }
+        }
     }
 }
