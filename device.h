@@ -52,7 +52,7 @@ public:
         // Текущее время в устройстве
         quint32			m_dwCurrTime;
         // Информация по основным и альтернативным каналам
-        TChannelInfo	m_cInfo[2][iChannelNumb];
+        TChannelInfo	m_cInfo[iChannelNumb];
     };
 
     // Конфигурация измерительного канала
@@ -93,12 +93,12 @@ public:
         char                szDeviceId[13];
     };
 
-    typedef float EX_CONST[2][iChannelNumb];
+//    typedef float EX_CONST[2][iChannelNumb];
 
-    typedef struct {
-        quint8	byNumb;
-        float	faCoef[6];
-    } TERM_COEFF;
+//    typedef struct {
+//        quint8	byNumb;
+//        float	faCoef[6];
+//    } TERM_COEFF;
 
     enum ECommandCode {
             ccGetCurrentInfo			=  0,

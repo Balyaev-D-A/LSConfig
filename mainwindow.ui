@@ -27,6 +27,11 @@
         </property>
         <column>
          <property name="text">
+          <string>Num</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
           <string>KKS</string>
          </property>
         </column>

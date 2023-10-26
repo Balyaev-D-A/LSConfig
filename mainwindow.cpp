@@ -9,6 +9,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     connect(ui->connectAction, &QAction::triggered, this, &MainWindow::connectActionTriggered);
+    ui->channelsTable->hideColumn(0);
     fillUOMBox();
 }
 
@@ -38,11 +39,11 @@ void MainWindow::connectionChoosed()
     {
         ui->channelsTable->insertRow(i);
         if (!currStation.channels[i].active) ui->channelsTable->hideRow(i);
-        ui->channelsTable->setItem(i, 0, new QTableWidgetItem(currStation.channels[i].kks));
-        ui->channelsTable->setItem(i, 1, new QTableWidgetItem(currStation.channels[i].detType));
+        ui->channelsTable->setItem(i, 0, new QTableWidgetItem(i));
+        ui->channelsTable->setItem(i, 1, new QTableWidgetItem(currStation.channels[i].kks));
+        ui->channelsTable->setItem(i, 2, new QTableWidgetItem(currStation.channels[i].detType));
     }
     ui->channelsTable->selectRow(0);
-    ui->channelsTable->
 }
 
 void MainWindow::fillUOMBox()
@@ -80,23 +81,34 @@ void MainWindow::connectToDevice()
     }
     connected = true;
     actionQueue.enqueue(UPDATECHANCONF);
-    dataLoop();
+    connectionLoop();
 }
 
-void MainWindow::dataLoop()
+void MainWindow::connectionLoop()
 {
     EAction action;
     while (connected)
     {
         device.getCurrentInfo(&currDevInfo);
-        displayInfo();
-        if (!actionQueue.isEmpty()) {
+        displayMeasures();
+        while (!actionQueue.isEmpty()) {
             action = actionQueue.dequeue();
             switch (action) {
             case UPDATECHANCONF:
-
-
-            }
+                displayChanConfig();
+                break;
+            case WRITECHANCONF:
+                    writeChanConf();
+                break;
+            case SAVETOCMOS:
+                saveToCMOS();
+                break;
+             }
         }
+        QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
     }
+}
+void MainWindow::displayMeasures()
+{
+
 }

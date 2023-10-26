@@ -27,7 +27,6 @@ private:
     Device device;
     bool connected;
     enum EAction {
-        UPDATEINDICATIONS,
         UPDATECHANCONF,
         WRITECHANCONF,
         SAVETOCMOS
@@ -38,8 +37,13 @@ private:
     void fillUOMBox();
     void connectToDevice();
     void disconnectFromDevice();
-    void dataLoop();
-    void displayInfo();
+    void connectionLoop();
+    void displayMeasures();
+    void displayChanInfo(int chanNumber);
+    void displayChanConfig();
+    int currentChannel();
+    void writeChanConf();
+    void saveToCMOS();
 
 private slots:
     void stationSelFormClosed();
