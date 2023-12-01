@@ -73,6 +73,80 @@ void MainWindow::fillUOMBox()
     ui->uomBox->addItem("л/мин", 57);
 }
 
+QString MainWindow::UOMCodeToString(quint16 code)
+{
+    switch (code) {
+    case 1:
+        return "Гр/ч";
+        break;
+    case 2:
+        return "Бэр/ч";
+        break;
+    case 3:
+        return "Зв/ч";
+        break;
+    case 4:
+        return "Р/ч";
+        break;
+    case 5:
+        return "Н/(м²*с)";
+        break;
+    case 8:
+        return "Бк/м³";
+        break;
+    case 9:
+        return "Ки/л";
+        break;
+    case 10:
+        return "1/(мин*см²)";
+        break;
+    case 16:
+        return "Гр";
+        break;
+    case 17:
+        return "Рад";
+        break;
+    case 18:
+        return "Зв";
+        break;
+    case 32:
+        return "мг/м³";
+        break;
+    case 48:
+        return "%";
+        break;
+    case 49:
+        return "имп/с";
+        break;
+    case 50:
+        return "°С";
+        break;
+    case 51:
+        return "Вт";
+        break;
+    case 52:
+        return "В";
+        break;
+    case 53:
+        return "сек";
+        break;
+    case 54:
+        return "м³";
+        break;
+    case 55:
+        return "м³/ч";
+        break;
+    case 56:
+        return "м³/с";
+        break;
+    case 57:
+        return "л/мин";
+        break;
+    default:
+        return "---";
+    }
+}
+
 void MainWindow::connectToDevice()
 {
     if (!device.connectToDevice(SerialManager::instance()->currentPort(), StationManager::instance()->currentStation().address)) {
@@ -109,6 +183,21 @@ void MainWindow::connectionLoop()
     }
 }
 void MainWindow::displayMeasures()
+{
+
+}
+
+void MainWindow::displayChanConfig()
+{
+
+}
+
+void MainWindow::writeChanConf()
+{
+
+}
+
+void MainWindow::saveToCMOS()
 {
 
 }

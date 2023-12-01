@@ -44,6 +44,7 @@ private:
     int currentChannel();
     void writeChanConf();
     void saveToCMOS();
+    QString UOMCodeToString(quint16 code);
 
 private slots:
     void stationSelFormClosed();
