@@ -26,25 +26,20 @@ private:
     ConnectForm *stationSelForm;
     Device device;
     bool connected;
-    enum EAction {
-        UPDATECHANCONF,
-        WRITECHANCONF,
-        SAVETOCMOS
-    };
-    QQueue<EAction> actionQueue;
+    bool firstTime;
     Device::TChannelConfig currChanConf;
     Device::TDeviceInfo currDevInfo;
     void fillUOMBox();
     void connectToDevice();
     void disconnectFromDevice();
-    void connectionLoop();
-    void displayMeasures();
-    void displayChanInfo(int chanNumber);
-    void displayChanConfig();
+    void updateMeasures();
+    void updateChanInfo();
+    void displayChanConfig(int chanNumber);
     int currentChannel();
-    void writeChanConf();
-    void saveToCMOS();
     QString UOMCodeToString(quint16 code);
+
+protected:
+    void timerEvent(QTimerEvent *e);
 
 private slots:
     void stationSelFormClosed();

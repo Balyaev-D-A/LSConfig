@@ -7,9 +7,8 @@
 
 #define NOERROR "Нет ошибки."
 
-class Device : public QObject
+class Device
 {
-    Q_OBJECT
 public:
     // Статусные признаки
     static const quint32 ST_SWITCH		= 0x00000001;
@@ -134,7 +133,7 @@ public:
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    explicit Device(QObject *parent = nullptr);
+    explicit Device();
     ~Device();
     bool connectToDevice(QString port, quint8 address);
     void disconnectDevice();
@@ -156,11 +155,6 @@ private:
     bool readHoldingRegisters(quint16 start, quint16 count, char *result);
     bool writeHoldingRegisters(quint16 start, quint16 count, char *data);
     bool executeCommand(quint16 *cmdData, quint16 cmdSize);
-
-private slots:
-
-signals:
-
 };
 
 #endif // DEVICE_H

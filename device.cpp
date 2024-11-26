@@ -6,8 +6,7 @@
 #define INFOBASE 0
 #define CONFIGBASE 0x1000
 
-Device::Device(QObject *parent)
-    : QObject{parent}
+Device::Device()
 {
     m_pPort = new QSerialPort();
     m_settings = Settings::instance();

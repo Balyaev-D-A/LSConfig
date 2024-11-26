@@ -154,50 +154,28 @@ void MainWindow::connectToDevice()
         return;
     }
     connected = true;
-    actionQueue.enqueue(UPDATECHANCONF);
-    connectionLoop();
+    firstTime = true;
+    startTimer(1);
 }
 
-void MainWindow::connectionLoop()
+void MainWindow::updateMeasures()
 {
-    EAction action;
-    while (connected)
+    device.getCurrentInfo(&currDevInfo);
+    for (int i=0; i<ui->channelsTable->rowCount(); i++)
     {
-        device.getCurrentInfo(&currDevInfo);
-        displayMeasures();
-        while (!actionQueue.isEmpty()) {
-            action = actionQueue.dequeue();
-            switch (action) {
-            case UPDATECHANCONF:
-                displayChanConfig();
-                break;
-            case WRITECHANCONF:
-                    writeChanConf();
-                break;
-            case SAVETOCMOS:
-                saveToCMOS();
-                break;
-             }
-        }
-        QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
+        if (ui->channelsTable->isRowHidden(i)) continue;
+        ui->channelsTable->setItem(i, 2, new QTableWidgetItem(QString("%1").arg(currDevInfo.m_cInfo[i].m_fsValue, 0, 'E')));
     }
+    updateChanInfo();
+    if (firstTime)
 }
-void MainWindow::displayMeasures()
+
+void MainWindow::updateChanInfo()
 {
 
 }
 
-void MainWindow::displayChanConfig()
+void MainWindow::timerEvent(QTimerEvent *e)
 {
-
-}
-
-void MainWindow::writeChanConf()
-{
-
-}
-
-void MainWindow::saveToCMOS()
-{
-
+    updateMeasures();
 }
